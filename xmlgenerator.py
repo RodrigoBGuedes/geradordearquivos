@@ -4,6 +4,7 @@ import argparse
 import random
 from datetime import datetime
 from pathlib import Path
+import xml.etree.ElementTree as gfg
 
 parser = argparse.ArgumentParser(description="Generate random XML file name in specific time")
 parser.add_argument("-t", "--time", default=3)
@@ -27,14 +28,25 @@ def generatexml(filename):
     txt_filename = str(sample_name) + '_' + str(sample_material) + '_' + str(sample_date) + ".xml"
     new_txt = Path(folder, str(txt_filename))
 
-    f = open(new_txt, "a")
-    f.writelines(str(sample_name) + filename)
-    f.close()
+    root = gfg.Element("Tipos")
+
+    m1 = gfg.Element("Comodos")
+    root.append(m1)
+
+    b1 = gfg.SubElement(m1, "name")
+    b1.text = str(sample_name)
+    b2 = gfg.SubElement(m1, "number")
+    b2.text = str(sample_material)
+
+    tree = gfg.ElementTree(root)
+
+    with open(new_txt, "wb") as files:
+        tree.write(files)
 
     print(f"Writing log file: {new_txt}\n")
     return
 
 
 while 1:
-    generatexml(f'{random.randrange(50, 350)}')
+    generatexml('')
     time.sleep(time_between_creation)
