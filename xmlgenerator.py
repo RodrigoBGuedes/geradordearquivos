@@ -22,7 +22,7 @@ def generatexml(filename):
     sample_names_values = ("Auditorio", 'Marcenaria', 'Saguao', 'Salao', 'Sala-de-estar')
     sample_material = random.randrange(1, 9999)
     sample_name = random.choice(sample_names_values)
-    sample_date = now.strftime('%Y%m%d_%H_%M_%S')
+    sample_date = now.strftime('%Y-%m-%d_%Hh-%Mm-%Ss')
 
     txt_filename = str(sample_name) + '_' + str(sample_material) + '_' + str(sample_date) + ".xml"
     new_txt = Path(folder, str(txt_filename))
