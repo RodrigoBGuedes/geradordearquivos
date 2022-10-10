@@ -11,7 +11,6 @@ parser.add_argument("-t", "--time", default=3)
 option = parser.parse_args()
 
 time_between_creation = int(option.time)
-count = 0
 
 
 def generatexml(filename):
@@ -50,6 +49,4 @@ def generatexml(filename):
 
 while 1:
     generatexml('')
-    count += 1
-    print(f'Foram gerados:{count}')
     time.sleep(time_between_creation)
